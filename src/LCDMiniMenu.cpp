@@ -1,4 +1,4 @@
-#include "LCDSimpleMenu.h"
+#include "LCDMiniMenu.h"
 
 #include <Wire.h>
 
@@ -49,12 +49,12 @@ byte CHECK_CHAR_BM[8] = {
 #define MAX_DISPLAY_SIZE  4
 #define DEFAULT_MENU_SEP  '.'
 
-LCDSimpleMenu::LCDSimpleMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t menu_size):
-  LCDSimpleMenu(lcd, menu, menu_size, 16, 2)
+LCDMiniMenu::LCDMiniMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t menu_size):
+  LCDMiniMenu(lcd, menu, menu_size, 16, 2)
 {
 }
 
-LCDSimpleMenu::LCDSimpleMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t menu_size, uint8_t acols, uint8_t arows)
+LCDMiniMenu::LCDMiniMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t menu_size, uint8_t acols, uint8_t arows)
 {
   _lcd = lcd;
   _menu = menu;
@@ -69,19 +69,19 @@ LCDSimpleMenu::LCDSimpleMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t me
   _submenu_size = 0;
 }
 
-void LCDSimpleMenu::setDisplay(LiquidCrystal_I2C* lcd)
+void LCDMiniMenu::setDisplay(LiquidCrystal_I2C* lcd)
 {
   _lcd = lcd;
 }
 
-void LCDSimpleMenu::init(bool printids, bool forceredraw)
+void LCDMiniMenu::init(bool printids, bool forceredraw)
 {
   _print_ids = printids;
   _force_redraw = forceredraw;
   initDisplay();
 }
 
-void LCDSimpleMenu::initDisplay()
+void LCDMiniMenu::initDisplay()
 {
   _lcd->init();
 
@@ -95,13 +95,13 @@ void LCDSimpleMenu::initDisplay()
   _lcd->begin(_cols, _rows);
 }
 
-void LCDSimpleMenu::draw()
+void LCDMiniMenu::draw()
 {
     _lcd->clear();
     drawSubMenu();
 }
 
-void LCDSimpleMenu::drawSubMenu()
+void LCDMiniMenu::drawSubMenu()
 {
   _last_row_drawn = _curr_row;
 
@@ -144,7 +144,7 @@ void LCDSimpleMenu::drawSubMenu()
   }
 }
 
-bool LCDSimpleMenu::viewIsChanged()
+bool LCDMiniMenu::viewIsChanged()
 {
   bool changed = false;
   if (_curr_row != _last_row_drawn)
@@ -152,13 +152,13 @@ bool LCDSimpleMenu::viewIsChanged()
   return changed;
 }
 
-void LCDSimpleMenu::run()
+void LCDMiniMenu::run()
 {
   if (_force_redraw || viewIsChanged())
     draw();
 }
 
-void LCDSimpleMenu::navigate(uint16_t parentid)
+void LCDMiniMenu::navigate(uint16_t parentid)
 {
   // select ids of all entries with same parentid
   _curr_menu = parentid;
@@ -171,7 +171,7 @@ void LCDSimpleMenu::navigate(uint16_t parentid)
   _curr_row = 0;
 }
 
-void LCDSimpleMenu::select(int menuid)
+void LCDMiniMenu::select(int menuid)
 {
   // check for bounds on current submenu
   if (menuid <= 0 || menuid > _submenu_size)
@@ -195,21 +195,21 @@ void LCDSimpleMenu::select(int menuid)
   }
 }
 
-void LCDSimpleMenu::back()
+void LCDMiniMenu::back()
 {
   // assume that submenu ids are multiplied by 10
   _curr_menu = _curr_menu / 10;
   navigate(_curr_menu);
 }
 
-void LCDSimpleMenu::down()
+void LCDMiniMenu::down()
 {
   // increase current row (current row is the first of menu page)
   if (_submenu_size - 1 > _curr_row + (_rows - 1))
     _curr_row++;
 }
 
-void LCDSimpleMenu::up()
+void LCDMiniMenu::up()
 {
   // decrease current row (current row is the first of menu page)
   if (_curr_row > 0)

@@ -1,5 +1,5 @@
-#ifndef LCDSIMPLEMENU_H
-#define LCDSIMPLEMENU_H
+#ifndef LCDMINIMENU_H
+#define LCDMINIMENU_H
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -22,11 +22,11 @@ typedef struct {
     MenuFunction func;    //function to invoke on entry selection
 } MenuConfig;
 
-class LCDSimpleMenu
+class LCDMiniMenu
 {
   public:
-    LCDSimpleMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t menu_size);
-    LCDSimpleMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t menu_size, uint8_t acols, uint8_t arows);
+    LCDMiniMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t menu_size);
+    LCDMiniMenu(LiquidCrystal_I2C* lcd, MenuConfig* menu, size_t menu_size, uint8_t acols, uint8_t arows);
 
     void back();
     void down();
@@ -59,4 +59,4 @@ class LCDSimpleMenu
     void drawSubMenu();
 };
 
-#endif // LCDSIMPLEMENU_H
+#endif // LCDMINIMENU_H

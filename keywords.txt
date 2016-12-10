@@ -1,10 +1,18 @@
-# LCDMiniMenu Library data types
+#######################################
+# Syntax Coloring Map For LCDMiniMenu
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
 MenuLabel		KEYWORD1
 MenuFunction	KEYWORD1
 MenuConfig		KEYWORD1
-LCDSimpleMenu	KEYWORD1
+LCDMiniMenu		KEYWORD1
 
-# LCDMiniMenu Library methods & functions
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
 back		KEYWORD2
 down		KEYWORD2
 draw		KEYWORD2
@@ -14,3 +22,11 @@ run			KEYWORD2
 select		KEYWORD2
 up			KEYWORD2
 viewIsChanged	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
