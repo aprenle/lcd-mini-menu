@@ -1,0 +1,16 @@
+# LCDMiniMenu Library data types
+MenuLabel		KEYWORD1
+MenuFunction	KEYWORD1
+MenuConfig		KEYWORD1
+LCDSimpleMenu	KEYWORD1
+
+# LCDMiniMenu Library methods & functions
+back		KEYWORD2
+down		KEYWORD2
+draw		KEYWORD2
+init		KEYWORD2
+navigate	KEYWORD2
+run			KEYWORD2
+select		KEYWORD2
+up			KEYWORD2
+viewIsChanged	KEYWORD2
